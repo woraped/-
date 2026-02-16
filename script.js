@@ -15,7 +15,7 @@ const calculateCompound = ({ principal, annualRatePercent, years, compoundsPerYe
   const rateDecimal = annualRatePercent / 100;
   const total = principal * (1 + rateDecimal / compoundsPerYear) ** (compoundsPerYear * years);
   const interest = total - principal;
-  const perPerson = total / 4;
+  const perPerson = total;
 
   return { total, interest, perPerson };
 };
