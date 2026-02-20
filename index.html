@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>เครื่องคำนวณดอกเบี้ยทบต้นและการหารเงินรวม</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero" id="home">
+      <div class="container">
+        <p class="subtitle">
+          ใส่ข้อมูลตามช่องด้านล่าง ระบบจะแนะนำค่าเบื้องต้นและคำนวณให้ทันที
+          พร้อมอธิบายว่าช่องไหนควรใส่อะไรอย่างชัดเจน
+        </p>
+        <a class="hero-link" href="#calculator">เริ่มคำนวณ</a>
+      </div>
+    </header>
+
+    <main class="container main-grid">
+      <section class="card" id="calculator" aria-labelledby="calc-title">
+        <h2 id="calc-title">เครื่องคำนวณดอกเบี้ยทบต้น</h2>
+        <p class="helper">
+          สูตรที่ใช้: <strong>A = P(1 + r/n)<sup>nt</sup></strong>
+          โดย A = เงินรวมปลายงวด
+        </p>
+
+        <form id="compound-form" novalidate>
+          <div class="field-group">
+            <label for="principal">เงินต้นเริ่มต้น (บาท)</label>
+            <input
+              id="principal"
+              name="principal"
+              type="number"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+              value="10000"
+              aria-describedby="principal-help"
+            />
+            <small id="principal-help">ตัวอย่างแนะนำ: 10,000 บาท</small>
+          </div>
+
+          <div class="field-group">
+            <label for="annual-rate">อัตราดอกเบี้ยต่อปี (%)</label>
+            <input
+              id="annual-rate"
+              name="annual-rate"
+              type="number"
+              min="0"
+              step="0.01"
+              inputmode="decimal"
+              value="4.5"
+              aria-describedby="rate-help"
+            />
+            <small id="rate-help"
+              >คำแนะนำ: โดยทั่วไปใช้ช่วง 1% - 8% ตามผลิตภัณฑ์การเงิน</small
+            >
+          </div>
+
+          <div class="field-group">
+            <label for="years">ระยะเวลา (ปี)</label>
+            <input
+              id="years"
+              name="years"
+              type="number"
+              min="0"
+              step="1"
+              inputmode="numeric"
+              value="5"
+              aria-describedby="years-help"
+            />
+            <small id="years-help">ตัวอย่างแนะนำ: 3 - 10 ปี</small>
+          </div>
+
+          <div class="field-group">
+            <label for="compound-frequency">จำนวนครั้งที่ทบต้นต่อปี</label>
+            <select id="compound-frequency" name="compound-frequency" aria-describedby="freq-help">
+              <option value="1">ปีละครั้ง</option>
+              <option value="2">ทุก 6 เดือน (2 ครั้ง/ปี)</option>
+              <option value="4">ทุกไตรมาส (4 ครั้ง/ปี)</option>
+              <option value="12" selected>รายเดือน (12 ครั้ง/ปี)</option>
+              <option value="365">รายวัน (365 ครั้ง/ปี)</option>
+            </select>
+            <small id="freq-help">หากไม่แน่ใจ เลือก “รายเดือน” ได้เลย</small>
+          </div>
+
+          <button type="submit" class="primary-btn">คำนวณผลลัพธ์</button>
+        </form>
+
+        <section class="result" aria-live="polite" aria-atomic="true">
+          <h3>ผลลัพธ์</h3>
+          <div class="result-grid">
+            <article>
+              <p class="result-label">เงินรวมปลายงวด</p>
+              <p id="total-amount" class="result-value">-</p>
+            </article>
+            <article>
+              <p class="result-label">ดอกเบี้ยรวมที่ได้รับ</p>
+              <p id="interest-earned" class="result-value">-</p>
+            </article>
+          </div>
+          <p id="explanation" class="explanation"></p>
+        </section>
+      </section>
+
+      <aside class="card tips" aria-labelledby="tips-title">
+        <h2 id="tips-title">แนะนำการใช้งาน</h2>
+        <ul>
+          <li><strong>เงินต้น:</strong> ใส่จำนวนเงินที่มีอยู่ตอนเริ่มต้น</li>
+          <li><strong>ดอกเบี้ยต่อปี:</strong> ใส่เป็นเปอร์เซ็นต์ เช่น 4.5</li>
+          <li><strong>ระยะเวลา:</strong> ใส่จำนวนปีที่ต้องการวางแผน</li>
+          <li><strong>ทบต้น:</strong> ถ้ารับดอกบ่อย ยอดรวมจะสูงขึ้น</li>
+        </ul>
+        <p>
+          เคล็ดลับ: ลองปรับดอกเบี้ยและระยะเวลาเพื่อดูความแตกต่างของเงินปลายงวด
+          แล้วเปรียบเทียบยอดต่อคนได้ทันที
+        </p>
+      </aside>
+    </main>
+
+    <section class="about" id="about-us">
+      <div class="container">
+        <h2>About Us</h2>
+        <p class="subtitle">
+          ทีมผู้พัฒนา 4 คน
+        </p>
+
+        <div class="member-grid">
+          <article class="member-card">
+            <h3>ชื่อ-นามสกุล: นายณภัทรพงศ์ เฉลิมลาภ</h3>
+            <p>ชั้น: ม.5/2</p>
+            <p>เลขที่: 4</p>
+          </article>
+
+          <article class="member-card">
+            <h3>ชื่อ-นามสกุล: นายธีรภัทร สมพลพัฒนกิจ</h3>
+            <p>ชั้น: ม.5/2</p>
+            <p>เลขที่: 5</p>
+          </article>
+
+          <article class="member-card">
+            <h3>ชื่อ-นามสกุล: นายมธุรพจน์ สีสุธก</h3>
+            <p>ชั้น: ม.5/2</p>
+            <p>เลขที่: 19</p>
+          </article>
+
+          <article class="member-card">
+            <h3>ชื่อ-นามสกุล: นายวรปรัชญ์ อิศรางกูร ณ อยุธยา</h3>
+            <p>ชั้น: ม.5/2</p>
+            <p>เลขที่: 21</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>ออกแบบให้รองรับมือถือ แท็บเล็ต ไอแพด และคอมพิวเตอร์</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
